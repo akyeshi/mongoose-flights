@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+
+<h2>Flight List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Airline</th>
+      <th>Airport</th>
+      <th>FlightNo</th>
+      <th>Departs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% const today = new Date(); %>
+    <!-- Write the line of EJS to iterate over movies using forEach -->
+    <% flights.forEach((flight) => { %>
+    <tr style="<%= flight.departs < today ? 'color: red' : '' %>">
+      <td><%= flight.airline %></td>
+      <td><%= flight.airport %></td>
+      <td><%= flight.flightNo %></td>
+      <td><%= flight.departs.toLocaleString() %></td>
+    </tr>
+    <!-- Close the forEach using EJS here -->
+    <% }); %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
