@@ -4,16 +4,28 @@ module.exports = {
   new: newFlight,
   create,
   index,
+  show,
 };
 
 function newFlight(req, res) {
-  res.render("flights/new", { errorMsg: "" });
+  const newFlight = new Flight();
+  // Obtain the default date
+  const dt = newFlight.departs;
+  // Format the date for the value attribute of the input
+  let departsDate = `${dt.getFullYear()}-${(dt.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}`;
+  departsDate += `-${dt.getDate().toString().padStart(2, "0")}T${dt
+    .toTimeString()
+    .slice(0, 5)}`;
+  res.render("flights/new", { errorMsg: "", departsDate });
 }
 
 async function create(req, res) {
-  console.log('create flight: '); 
+  console.log("create flight: ");
+  // delete empty properties, so that Mongoose default will take effect
   for (let key in req.body) {
-    if (req.body[key] === '') delete req.body[key];
+    if (req.body[key] === "") delete req.body[key];
   }
   try {
     await Flight.create(req.body);
@@ -29,6 +41,14 @@ async function create(req, res) {
 
 async function index(req, res) {
   const flights = await Flight.find({});
-  // const flights = await Flight.find({}).sort('departs'); 
+  // const flights = await Flight.find({}).sort('departs');
   res.render("flights", { flights });
+}
+
+async function show(req, res) {
+  // Populate the cast array with performer docs instead of ObjectIds
+  const flight = await Flight.findById(req.params.id);
+  console.log(`flight ---\n${flight}`);
+  // const performers = await
+  res.render("flights/show", { title: "Flight Detail", flight });
 }
