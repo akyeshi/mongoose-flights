@@ -1,36 +1,41 @@
 <%- include('../partials/header') %>
 
-<h2>Enter a New Flight</h2>
-<form action="/flights" method="POST" autocomplete="on">
+<div id="container">
+  <h2>Enter a New Flight</h2>
+  <form action="/flights" method="POST" autocomplete="on">
+    <label
+      >Airline:
+      <select name="airline">
+        <option value="American">American</option>
+        <option value="Southwest">Southwest</option>
+        <option value="United">United</option>
+      </select> </label
+    ><br />
 
-  <label>Airline: 
-    <select name="airline">
-      <option value="American">American</option>
-      <option value="Southwest">Southwest</option>
-      <option value="United">United</option>
-    </select>
-  </label><br>
+    <label
+      >Airport:
+      <select name="airport">
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN" selected>DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+      </select> </label
+    ><br />
 
-  <label>Airport: 
-    <select name="airport">
-      <option value="AUS">AUS</option>
-      <option value="DFW">DFW</option>
-      <option value="DEN" selected>DEN</option>
-      <option value="LAX">LAX</option>
-      <option value="SAN">SAN</option>
-    </select>
-  </label><br>
+    <label
+      >Flight Number:
+      <input type="number" name="flightNo" /> </label
+    ><br />
 
-  <label>Flight Number:
-    <input type="number" name="flightNo">
-  </label><br>
+    <label
+      >Depart Time:
+      <input type="datetime-local" name="departs" /> </label
+    ><br />
 
-  <label>Depart Time:
-    <input type="datetime-local" name="departs">
-  </label><br>
-
-  <button type="submit">Add Flight</button>
-</form>
-<p><%= errorMsg %></p>
+    <button type="submit">Add Flight</button>
+  </form>
+  <p><%= errorMsg %></p>
+</div>
 
 <%- include('../partials/footer') %>

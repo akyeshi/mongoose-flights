@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<div id="container">
+  <h2>Buy a New Ticket</h2>
+  <form action="/flights/<%= flightId %>/tickets" method="POST" autocomplete="on">
+    <label>Seat:
+      <input name="seat" required pattern="[A-F][1-9]\d?">
+      <br />
+
+    <label>Price: 
+      <!-- name attribute has to match what's on the model  -->
+      <input name="price" type="number">
+    <br />
+
+
+    <button type="submit">Add Ticket</button>
+  </form>
+
+</div>
+
+<%- include('../partials/footer') %>

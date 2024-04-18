@@ -1,4 +1,5 @@
 const Flight = require("../models/flight");
+const Ticket = require("../models/ticket");
 
 module.exports = {
   new: newFlight,
@@ -48,7 +49,11 @@ async function index(req, res) {
 async function show(req, res) {
   // Populate the cast array with performer docs instead of ObjectIds
   const flight = await Flight.findById(req.params.id);
+  const tickets = await Ticket.find({flight: flight._id}); 
+  // how to populate a ticket’s flight property
+  // const tickets = await Ticket.findById(req.params.id).populate('flight'); 
   console.log(`flight ---\n${flight}`);
+  console.log(`tickets ---\n${tickets}`); 
   // const performers = await
-  res.render("flights/show", { title: "Flight Detail", flight });
+  res.render("flights/show", { title: "Flight Detail", flight, tickets });
 }
