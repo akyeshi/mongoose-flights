@@ -32,7 +32,14 @@
   align-items: center;
   justify-content: center;
   gap: 5px; 
+  margin: 5px; 
 }
+
+.airline-info {
+  border: 1px solid red; 
+  text-align: center;
+}
+
 
 
 body {
@@ -197,4 +204,32 @@ hr {
 	
 #show-page li {
   font-weight: bold;
+}
+
+
+.ticket-table {
+  width: 500px; 
+}
+
+
+.ticket-table th:nth-child(1), .ticket-table td:nth-child(1){
+  border-right: 2px solid purple; 
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticket-table th, td {
+  padding: 8px;
+  text-align: center;
+  border: 2px solid blue;
+  color: red
+}
+
+#add-flight label, button {
+  margin: auto; 
 }

@@ -5,29 +5,35 @@
   <h2><%= flight.airline %> Flight</h2>
   
   <p>--------- Flight Details ---------</p>
-  
-  <div class="airline">
+  <div class="airline-info">
     <p>Airline: <%= flight.airline %></p>
-  </div>
-  <div class="airline">
     <p>Airport: <%= flight.airport %></p>
-  </div>
-  <div class="airline">
     <p>Flight No: <%= flight.flightNo %></p>
-  </div>
-  <div class="airline">
     <p>Departs: <%= flight.departs %></p>
   </div>
+
   <a href="/flights/<%= flight._id%>/tickets/new"
   style="color: red; background: blue; border-radius: 8px; padding: 5px; text-decoration: none;"
   >New Ticket</a>
 
   <p>-------- Show Tickets --------</p>
   <!-- create a table  -->
-  <% tickets.forEach(ticket => { %>
-    <div>ticket seat: <%= ticket.seat  %></div>
-    <div>ticket price: <%= ticket.price  %></div>
-  <% }) %>
+  <table class="ticket-table">
+    <thead>
+      <tr style="border-bottom: 5px solid purple">
+        <th>Seat</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% tickets.forEach(ticket => { %>
+        <tr>
+          <td><%= ticket.seat  %></td>
+          <td><%= ticket.price  %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
   
   <p>-------- Add Destinations --------</p>
   <!-- add to cast form below this comment -->
@@ -36,7 +42,7 @@
     action="/flights/<%= flight._id %>/destinations"
     method="POST"
   >
-    <label>Airport: 
+    <label style="text-align: center;">Airport: 
       <select name="airport">
         <option value="AUS" selected>AUS</option>
         <option value="DFW">DFW</option>
@@ -44,12 +50,13 @@
         <option value="LAX">LAX</option>
         <option value="SAN">SAN</option>
       </select><br>
-    <label>Arrival: <input type="date" name="arrival" /><br>
+    <label style="text-align: center;">Arrival: <input type="date" name="arrival" /><br>
     <!-- <input type="submit"> -->
-    <button type="submit">Add Destination</button>
+    <button type="submit" style="text-align: center;">Add Destination</button>
   </form>
+</br><br>
   
-  <p>--------- Flight Arrivals ---------</p>
+  <p style="text-align: center">--------- Flight Arrivals ---------</p>
   <br />
   <div class="flight-destinations" style="background: black">
     <% if (flight.destinations.length) { %>

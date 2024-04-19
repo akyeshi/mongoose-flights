@@ -1,5 +1,5 @@
 const Flight = require("../models/flight");
-const Ticket = require("../models/ticket"); 
+const Ticket = require("../models/ticket");
 
 module.exports = {
   create,
@@ -9,7 +9,7 @@ module.exports = {
 
 async function create(req, res) {
   const flight = await Flight.findById(req.params.id);
-  req.body.flight = flight; 
+  req.body.flight = flight;
   const ticket = await Ticket.create(req.body); // create ticket
 
   // We can push (or unshift) subdocs into Mongoose arrays
